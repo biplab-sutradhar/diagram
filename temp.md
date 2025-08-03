@@ -1,8 +1,5 @@
 
 
-<details>
-<summary>USER</summary>
-
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
 | `/users/me` | GET | True | Retrieve authenticated user profile |
@@ -480,5 +477,4 @@ class Auth401,Input400,User403,Server500 error
 
 ```
 
-</details>
 
