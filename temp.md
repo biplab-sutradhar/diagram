@@ -1,58 +1,6 @@
 <details>
 <summary>USER</summary>
 
-
-```mermaid
- flowchart TD
-%% API Flow: GET /users/me
-Start[GET /users/me] --> Auth{Authorized?}
-
-Auth -->|No| Auth401[Return 401 Unauthorized]
-Auth -->|Yes| ExtractUserId[Extract userId from token]
-
-ExtractUserId --> GetUser[Get User Data]
-GetUser --> UserExists{User exists?}
-
-UserExists -->|No| User404[Return 404 User Not Found]
-UserExists -->|Yes| GetSubscription[Fetch Subscription]
-
-GetSubscription --> SubExists{Subscription?}
-SubExists -->|No| Partial206[Return 206 Partial Content]
-SubExists -->|Yes| GetKeys[Get API Keys]
-
-GetKeys --> KeysFound{Keys?}
-KeysFound -->|No| Partial206
-KeysFound -->|Yes| FormatData[Build Full User Profile Response]
-
-FormatData --> FormatSuccess{Format Successful?}
-FormatSuccess -->|No| FormatError500[Return 500 Internal Server Error]
-FormatSuccess -->|Yes| Success200[Return 200 OK]
-
-classDef startEnd fill:#81C8FF,stroke:#4682B4,stroke-width:2px,color:#000;
-classDef decision fill:#FFD54F,stroke:#FFB300,stroke-width:2px,color:#000;
-classDef success fill:#A5D6A7,stroke:#388E3C,stroke-width:2px,color:#000;
-classDef error fill:#EF9A9A,stroke:#D32F2F,stroke-width:2px,color:#000;
-classDef warning fill:#FFCC80,stroke:#F57C00,stroke-width:2px,color:#000;
-
-class Start,Success200 startEnd
-class Auth,UserExists,SubExists,KeysFound,FormatSuccess decision
-class Success200 success
-class Auth401,User404,FormatError500 error
-class Partial206 warning
-
-``` 
-
-</details>
-
-
-under detail tag mermaid code does not works why
-
-
-
-
-
-
-
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
 | `/users/me` | GET | True | Retrieve authenticated user profile |
@@ -92,7 +40,8 @@ under detail tag mermaid code does not works why
 > **Response:** `404 Not Found` - User not found
 > </details>
 
-### Api Flow diagram
+<details>
+<summary>Api Flow diagram</summary>
 
 ```mermaid
  flowchart TD
@@ -133,7 +82,7 @@ class Auth401,User404,FormatError500 error
 class Partial206 warning
 
 ``` 
-
+</details>
 ---
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
@@ -164,7 +113,9 @@ class Partial206 warning
 > **Response:** `401 Unauthorized` - Not authenticated
 > </details>
 
-### Api Flow diagram
+<details>
+<summary>Api Flow diagram</summary>
+
 ```mermaid
 flowchart TD
 %% API Flow: PATCH /users/me
@@ -200,6 +151,7 @@ class Success200 success
 class Auth401,Input422,User404,Server500 error
 
 ```
+</details>
 
 ---
 | URL | Method | Auth Required | Description |
@@ -220,7 +172,10 @@ class Auth401,Input422,User404,Server500 error
 > **Response:** `404 Not Found` - User not found
 > </details>
 
-### Api Flow diagram
+
+<details>
+<summary>Api Flow diagram</summary>
+
 ```mermaid
 flowchart TD
 %% API Flow: DELETE /users/me
@@ -256,6 +211,7 @@ class Auth401,User404,Server500 error
 class SoftDelete,UpdateUser,ClearCookies process
 
 ```
+</details>
 ---
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
@@ -294,7 +250,9 @@ class SoftDelete,UpdateUser,ClearCookies process
 > **Response:** `403 Forbidden` - Key limit reached
 > </details>
 
-### Api Flow diagram
+<details>
+<summary>Api Flow diagram</summary>
+
 ```mermaid
 flowchart TD
 %% API Flow: POST /users/me/api-key
@@ -336,6 +294,7 @@ class Auth401,Input422,User404,Server500 error
 class Limit403 warning
 
 ```
+</details>
 ---
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
@@ -355,7 +314,9 @@ class Limit403 warning
 > **Response:** `404 Not Found` - API key not found
 > </details>
 
-### Api Flow diagram
+<details>
+<summary>Api Flow diagram</summary>
+
  ```mermaid
 flowchart TD
 %% API Flow: DELETE /users/me/api-key/:keyId
@@ -392,6 +353,7 @@ class Success200 success
 class Auth401,Key404,Server500 error
 
 ```
+</details>
 ---
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
@@ -423,7 +385,10 @@ class Auth401,Key404,Server500 error
 > </details>
 > <details>
 
-### Api Flow diagram
+
+<details>
+<summary>Api Flow diagram</summary>
+
  ```mermaid
 flowchart TD
 %% API Flow: PUT /users/me/password
@@ -464,6 +429,7 @@ class Success200 success
 class Auth401,Input422,User404,Password400,Server500 error
 
 ```
+</details>
 ---
 | URL | Method | Auth Required | Description |
 |-----|--------|---------------|-------------|
@@ -494,7 +460,10 @@ class Auth401,Input422,User404,Password400,Server500 error
 > **Response:** `401 Unauthorized` - Not authenticated
 > </details>
 
-### Api Flow diagram
+
+<details>
+<summary>Api Flow diagram</summary>
+
 ```mermaid
 flowchart TD
 %% API Flow: POST /users/me/request
@@ -529,5 +498,4 @@ class Success200 success
 class Auth401,Input400,User403,Server500 error
 
 ```
-
-
+</details>
